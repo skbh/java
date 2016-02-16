@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+<!-- Must On the constant name="struts.mapper.action.prefix.enabled" value="true" for wild card -->
+<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true" /> -->
+<constant name="struts.mapper.action.prefix.enabled" value="true"/> <!-- Important for DMI -->
+<constant name="struts.devMode" value="true" />
+	<package name="default" extends="struts-default"  namespace="/action">
+		<action name="*User" method="{1}" class="com.skbh.action.EmpAction">
+			<result name="success">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="input">/error.jsp</result>
+		</action>
+		
+		<action name="*login" class="com.skbh.action.LoginAction" method="{1}">
+			<result name="success">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		
+	</package>
+
+
+</struts>
