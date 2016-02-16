@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<!-- bean definitions here -->
+<beans>
+	<bean id="triangle" class="com.skbh.spring.Triangle" name="triangle-name"  autowire="byName">
+		<property name="type" value="Equlateral"/>
+	</bean>
+	
+	<bean id="pointA" class="com.skbh.spring.Point">
+		<property name="x" value="0" />
+		<property name="y" value="0" />
+	</bean>
+
+	<bean id="pointB" class="com.skbh.spring.Point">
+		<property name="x" value="-20" />
+		<property name="y" value="0" />
+	</bean>
+
+
+	<bean id="pointC" class="com.skbh.spring.Point">
+		<property name="x" value="20" />
+		<property name="y" value="0" />
+	</bean>
+
+	
+	<alias name="triangle" alias="triangle-alias" />
+
+
+</beans>
+
+
+
+
+
+
+<!--   Autowiring -->
+<!--  
+<beans>
+	<bean id="triangle" class="com.skbh.spring.Triangle" name="triangle-name" >
+		<property name="type" value="Equlateral"/>
+		<property name="pointA" ref="pointA"/>
+		<property name="pointB" ref="pointB"/>
+		<property name="pointC" ref="pointC"/>
+		
+	</bean>
+	
+	<bean id="pointA" class="com.skbh.spring.Point">
+		<property name="x" value="0" />
+		<property name="y" value="0" />
+	</bean>
+
+	<bean id="pointB" class="com.skbh.spring.Point">
+		<property name="x" value="-20" />
+		<property name="y" value="0" />
+	</bean>
+
+
+	<bean id="pointC" class="com.skbh.spring.Point">
+		<property name="x" value="20" />
+		<property name="y" value="0" />
+	</bean>
+
+	
+	<alias name="triangle" alias="triangle-alias" />
+
+
+</beans>
+-->

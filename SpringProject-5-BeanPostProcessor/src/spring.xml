@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<!-- bean definitions here -->
+<beans default-init-method="init" default-destroy-method="cleanup">
+	<bean id="triangle" class="com.skbh.spring.Triangle" name="triangle-name">
+		<property name="type" value="Equilateral" />
+		<property name="pointA" ref="point1"/>		
+		<property name="pointB">
+				<bean id="point2" class="com.skbh.spring.Point">
+					<property name="x" value="${pointB.x}" />
+					<property name="y" value="${pointB.y}" />
+				</bean>
+		</property>
+
+		<property name="pointC">
+				<bean id="point3" class="com.skbh.spring.Point">
+					<property name="x" value="${pointC.x}" />
+					<property name="y" value="${pointC.y}" />
+				</bean>
+		</property>
+
+		</bean>
+
+	<bean id="point1" class="com.skbh.spring.Point">
+		<property name="x" value="${pointA.x}" />
+		<property name="y" value="${pointA.y}" />
+	</bean>
+
+	<alias name="triangle" alias="triangle-alias" />
+
+	<bean class="com.skbh.spring.DisplayBeanName"/>
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="locations" value="pointsconfig.properties"></property>
+	</bean>
+
+</beans>
