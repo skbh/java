@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<package name="register" namespace="/" extends="struts-default">
+
+<interceptors>
+     	<interceptor name="userinterceptor" class="org.skbh.java.interceptor.UserInterceptor"/>
+     	<interceptor name="nextlevelinterceptor" class="org.skbh.java.interceptor.NextLevelInterceptor"/>  
+	     	<interceptor-stack name="mystack">
+	     			<interceptor-ref name="params"/>
+					<interceptor-ref name="userinterceptor"/>
+					<interceptor-ref name="timer"/>
+					<interceptor-ref name="nextlevelinterceptor"/>    	
+	     	</interceptor-stack>   		
+</interceptors>
+
+
+<action name="register" class="org.skbh.java.action.UserRegister" method="execute">
+				
+		         <result name="success">/login.jsp</result>
+		         <result name="input">/register.jsp</result>
+		         <result name="login">/error.jsp</result>
+		         <result name="invalid.token">/invalid_token.jsp</result> 
+</action>
+
+<action name="update" class="org.skbh.java.action.ProfileUpdater" method="execute">  
+    <interceptor-ref name="token"></interceptor-ref>
+	<interceptor-ref name="defaultStack"></interceptor-ref>
+	<interceptor-ref name="mystack"></interceptor-ref>
+	<result name="success">/UpdatedMessage.jsp</result>
+	<result name="error">/error.jsp</result>
+	<result name="login">/update.jsp</result>  
+	<result name="input">/update.jsp</result> 
+	<result name="invalid.token">/invalid_token.jsp</result>  
+</action> 
+
+</package>   
+</struts>

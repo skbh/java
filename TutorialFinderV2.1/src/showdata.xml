@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<package name="show" namespace="/" extends="struts-default">
+<action name="showprofile" class="org.skbh.java.action.ShowUserProfile" method="execute">
+		         <result name="success">/searchForm.jsp</result>
+		         <result name="input">/error.jsp</result>
+		         <result name="login">/login.jsp</result>
+		         <result name="invalid.token">/invalid_token.jsp</result> 
+		         
+</action>
+
+</package>   
+</struts>
