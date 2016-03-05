@@ -28,14 +28,14 @@ class Process implements Runnable {
 public class ThreadPoolExecutorFramwork {
 
 	public static void main(String[] args) {
-		ExecutorService executor = Executors.newFixedThreadPool(2);
+		ExecutorService executor = Executors.newFixedThreadPool(3);
 		for (int i = 0; i < 5; i++) {
 			executor.submit(new Process(i));
 		}
 		executor.shutdown();
 		System.out.println("All tak submitted");
 		try {
-			executor.awaitTermination(1, TimeUnit.DAYS);
+			executor.awaitTermination(3, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
