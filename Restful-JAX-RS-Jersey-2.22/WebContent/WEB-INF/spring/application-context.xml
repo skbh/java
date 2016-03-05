@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+   
+    
+	<!-- application Context: defines shared resources visible to all other web components -->
+	<!-- begin bean definitions here -->
+	<context:annotation-config />
+	<context:component-scan base-package="in.skbh.svn.webservice.resource.*" />
+	<bean id="webServiceLogManager" class="in.skbh.svn.webservice.manager.Impl.WebServiceLogManagerImpl" />
+	<bean id="validatorInstance" class="in.skbh.svn.webservice.services.Impl.ResourceServiceRequestValidatorImpl" />
+	<bean id="ebizUploadManager" class="in.skbh.svn.webservice.manager.Impl.EbizUploadManagerImpl" />
+	<bean id="ebizUploadService" class="in.skbh.svn.webservice.services.Impl.EbizUploadServiceImpl" />
+	<!-- END bean definitions here -->
+		
+</beans>

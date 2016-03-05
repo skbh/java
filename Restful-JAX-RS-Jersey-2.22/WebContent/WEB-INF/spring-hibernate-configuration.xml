@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- bean definitions -->
+	
+	
+	<!-- begin Property Placeholder Configure to read from database.properties -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:database_development.properties</value>
+		</property>
+	</bean>
+	<!-- END Property Placeholder Configure to read from database.properties -->
+	
+	<!-- Connection Pooling data source -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
+		<property name="driverClass" value="${database.driverClass}" />
+		<property name="jdbcUrl" value="${database.jdbcUrlLocal}" /> <!-- for server machine Please use ${database.jdbcUrlServer} --><!-- for local machine Please use ${database.jdbcUrlLocal} -->
+		<property name="user" value="${database.user}" />
+		<property name="password" value="${database.password}" />
+		<property name="initialPoolSize" value="${database.initialPoolSize}" />
+		<property name="minPoolSize" value="${database.minPoolSize}" />
+		<property name="maxPoolSize" value="${database.maxPoolSize}" />
+		<property name="maxStatements" value="${database.maxStatements}" />
+		<property name="maxIdleTime" value="${database.maxIdleTime}" />
+		<property name="maxConnectionAge" value="${database.maxConnectionAge}" />
+		<property name="checkoutTimeout" value="${database.checkoutTimeout}" />
+		<property name="acquireIncrement" value="${database.acquireIncrement}" />
+		<property name="maxAdministrativeTaskTime" value="${database.maxAdministrativeTaskTime}" />
+	</bean>
+	<!-- if you are using only one instance of session Factory then go with 
+		this else use singleton <prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop> 
+		for more detail visit: http://ehcache.org/documentation/2.8/integrations/hibernate#enable-second-level-cache-and-query-cache-settings -->
+	
+	<!-- Begin SessionFactory annotation based Hibernate configuration -->	
+	<bean id="sessionFactory"	class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="in.skbh.svn.webservice.pojo" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl}</prop><!-- enabled {enable with caution} -->
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.connection.provider_class">${hibernate.provider_class}</prop>
+				<prop key="hibernate.connection.release_mode">${hibernate.connection_release_mode}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.use_query_cache}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.factory_class}</prop>
+				<!-- Optional Configuration --><!-- <prop key="net.sf.ehcache.configurationResourceName">ehcache.xml</prop> -->
+				<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- END SessionFactory annotation based Hibernate configuration -->	
+	
+</beans>
+
+<!-- backup of DBCP2 -->
+<!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"	destroy-method="close"> <property name="driverClassName" value="org.postgresql.Driver"/>
+ <property name="url" value="jdbc:postgresql://10.21.178.2:5432/uwp_prod"/>
+ <property name="username" value="postgres" />
+ <property name="password" value="postgres" />
+ <property name="initialSize" value="3" />
+ <property name="maxActive"	value="337"/> </bean>
+ -->
+<!-- END backup of DBCP2 -->
