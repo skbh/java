@@ -44,12 +44,12 @@ function validateEmailField(id) {
 			var div = $('#' + id).closest("div");
 			div.addClass("has-error");
 			/* $('#error1').html("<font color='red'>" + "Please Enter Email ID" + "</font>"); */
-			$('#' + id).attr("placeholder", "Type your email here");
+			$('#' + id).attr("placeholder", "Type your email here").focus();
 			return false;
 			}
 		else{
 			var div = $('#' + id).closest("div");
-			div.removeClass("has-error");
+			div.removeClass("has-error has-feedback");
 			/* $('#error1').html(""); */
 			return true;
 		}
@@ -60,7 +60,7 @@ function validatePasswordField(id) {
 		var div = $('#' + id).closest("div");
 		div.addClass("has-error");
 		/* $('#error2').html("<font color='red'>" + "Please Enter Password ID" + "</font>"); */
-		$('#' + id).attr("placeholder", "Type your password here");
+		$('#' + id).attr("placeholder", "Type your password here").focus();
 		return false;
 		}
 	else{
