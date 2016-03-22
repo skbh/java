@@ -3,22 +3,26 @@
         "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 <!-- bean definitions here -->
 <beans>
-	<bean id="triangle" class="com.skbh.spring.Triangle" name="triangle-name"  autowire="byName">
+	<bean id="triangle" class="com.skbh.spring.Triangle" name="triangle-name">
 		<property name="type" value="Equlateral"/>
+		<property name="pointA" ref="pointAA"></property>
+		<property name="pointB" ref="pointBB"></property>
+		<property name="pointC" ref="pointCC"></property>
+		
 	</bean>
 	
-	<bean id="pointA" class="com.skbh.spring.Point">
+	<bean id="pointAA" class="com.skbh.spring.Point">
 		<property name="x" value="0" />
 		<property name="y" value="0" />
 	</bean>
 
-	<bean id="pointB" class="com.skbh.spring.Point">
+	<bean id="pointBB" class="com.skbh.spring.Point">
 		<property name="x" value="-20" />
 		<property name="y" value="0" />
 	</bean>
 
 
-	<bean id="pointC" class="com.skbh.spring.Point">
+	<bean id="pointCC" class="com.skbh.spring.Point">
 		<property name="x" value="20" />
 		<property name="y" value="0" />
 	</bean>
