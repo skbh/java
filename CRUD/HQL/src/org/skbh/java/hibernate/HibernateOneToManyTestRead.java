@@ -13,10 +13,9 @@ public class HibernateOneToManyTestRead {
 		SessionFactory sessionfactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionfactory.openSession();
 		session.beginTransaction().begin();
-		Owner owner = (Owner) session.get(Owner.class, 2);
+		Owner owner = (Owner) session.get(Owner.class, 1);
 		for (Property property : owner.getProperties()) {
 			System.out.println("Owner Name : " + property.getOwner().getOwnerName());
-			System.out.println("Owner Address : " + property.getOwner().getOwnerAddress());
 			System.out.println("Property Address : " + property.getPropertyAddress());
 			System.out.println("Property Name : " + property.getPropertyName());
 		}

@@ -13,7 +13,6 @@ public class HibernateOneToManyTestUpdate {
 		Session session = sessionfactory.openSession();
 		session.beginTransaction().begin();
 		Owner owner = (Owner) session.get(Owner.class, 2);
-		owner.setOwnerAddress("Sarai Jullena, India");
 		owner.getProperties().get(1).setPropertyAddress("Banglore, India");
 		session.update(owner);
 		session.getTransaction().commit();

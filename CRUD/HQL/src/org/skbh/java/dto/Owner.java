@@ -1,10 +1,13 @@
 package org.skbh.java.dto;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.management.RuntimeErrorException;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,25 +15,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Owner {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer ownerId;
 	private String ownerName;
-	private String ownerAddress;
-	private Address address;
+	/*
+	 * @Embedded private Address address;
+	 */
+	@ElementCollection
+	@GenericGenerator(name = "hilo-gen", strategy = "hilo")
+	@CollectionId(columns = { @Column(name = "addressID") }, generator = "hilo-gen", type = @Type(type = "long"))
+	private Collection<Address> address = new ArrayList<Address>();
 
-	public Address getAddress() {
+	public Collection<Address> getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(Collection<Address> address) {
 		this.address = address;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Property> properties = new ArrayList<Property>();
 
 	public List<Property> getProperties() {
@@ -57,14 +69,6 @@ public class Owner {
 
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
-	}
-
-	public String getOwnerAddress() {
-		return ownerAddress;
-	}
-
-	public void setOwnerAddress(String ownerAddress) {
-		this.ownerAddress = ownerAddress;
 	}
 
 }
