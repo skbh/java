@@ -12,18 +12,20 @@ public class Test {
 		SessionFactory sessionfactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionfactory.openSession();
 		session.beginTransaction();
-		UserDetail user = (UserDetail) session.get(UserDetail.class, 4);
+		UserDetail user = (UserDetail) session.load(UserDetail.class, 2);
 		System.out.println("class Name " + user.getClass());
 		session.getTransaction().commit();
 		session.close();
-		user.setUserName("new XORASYSGEN");
+		UserDetail user1 = new UserDetail();
+		user1.setUserId(2);
+		user1.setUserName("Merge session");
 		session = sessionfactory.openSession();
 		session.beginTransaction();
-		session.merge(user);
+		session.merge(user1);
+		user1.setUserName("Merge session obj");
 
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("User Id " + user.getUserName());
 
 	}
 

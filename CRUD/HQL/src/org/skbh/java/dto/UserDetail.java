@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-// @org.hibernate.annotations.Entity(selectBeforeUpdate=true)
+// @org.hibernate.annotations.Entity(selectBeforeUpdate = true)
 public class UserDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
