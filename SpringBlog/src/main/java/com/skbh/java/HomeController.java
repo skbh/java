@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,12 +14,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skbh.java.model.LoginDetails;
+import com.skbh.java.service.LoginService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+
+	@Autowired
+	LoginService loginService;
+
+	public LoginService getLoginService() {
+		return loginService;
+	}
+
+	public void setLoginService(LoginService loginService) {
+		this.loginService = loginService;
+	}
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -39,15 +52,27 @@ public class HomeController {
 		return "home";
 	}
 
+	@ModelAttribute
+	public void commonMessage(Model model) {
+		model.addAttribute("headermessage", "Java blog - spring - hibernate - restful");
+
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "login";
 	}
 
 	@RequestMapping(value = "/loginProcessor", method = RequestMethod.POST)
-	public String login(@ModelAttribute("loginDetails") LoginDetails loginDetails) {
+	public String login(@ModelAttribute("loginDetails") LoginDetails loginDetails, Model model) {
 		System.out.println(loginDetails);
-		return "home";
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
+
+		String formattedDate = dateFormat.format(date);
+		loginService.registerUserService(loginDetails);
+		model.addAttribute("serverTime", formattedDate);
+		return "success";
 	}
 
 }

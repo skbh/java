@@ -69,12 +69,15 @@
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
 			</beans:props>
 		</beans:property>
-		<!-- <beans:property name="mappingResources">
+		<beans:property name="mappingResources">
 			<beans:list>
-				<beans:value>/com.skbh.java.mapping/MessageManager.hbm.xml</beans:value>
+				<beans:value>/com/skbh/java/mapping/LoginDetails.hbm.xml</beans:value>
 			</beans:list>
-		</beans:property> -->
+		</beans:property>
 	</beans:bean>
+	
+	<beans:bean id="loginManager" class="com.skbh.java.manager.impl.LoginManagerImpl" />
+	<beans:bean id="loginService" class="com.skbh.java.service.impl.LoginServiceImpl" />
 
 </beans:beans>
 
