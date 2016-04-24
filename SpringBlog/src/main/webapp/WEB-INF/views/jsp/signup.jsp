@@ -12,19 +12,14 @@
 <p class="text-left text-capitalize">${headermessage}</p>
 <footer>Author <cite title="Source Title">Sushil Kumar Bhaskar</cite></footer>
 </blockquote>
-<p class="text-center text-capitalize">${successMessage}</p>
-      <form:form class="form-signin" action="/java/loginProcessor" method="post" modelAttribute="loginDetails">
-        <h2 class="form-signin-heading">Please sign in</h2>
+      <form:form class="form-signin" action="/java/registerProcessor" method="post" modelAttribute="loginDetails">
+        <h2 class="form-signin-heading">Create Your Blog Account</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" name="userName" class="form-control" placeholder="Email address" required autofocus>
+        <input type="text" id="username" name="userName" class="form-control" placeholder="User Name" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
       </form:form>
 
 </body>

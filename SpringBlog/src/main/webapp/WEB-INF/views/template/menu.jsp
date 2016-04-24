@@ -16,7 +16,7 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href='<spring:url value="/"/>'>Home</a></li>
               <li><a href='<spring:url value="/login"/>'>Login</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href='<spring:url value="/register"/>'>Register</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu">

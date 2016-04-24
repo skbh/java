@@ -4,12 +4,19 @@
 <!-- Generated Apr 25, 2016 1:18:09 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.skbh.java.model.LoginDetails" table="login_detail">
-        <id name="userName" type="java.lang.String">
-            <column name="user_name" />
-            <generator class="assigned" />
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
         </id>
+         <property name="userName" type="java.lang.String">
+            <column name="user_name" />
+        </property>
+        
         <property name="password" type="java.lang.String">
             <column name="password" />
+        </property>
+         <property name="email" type="java.lang.String">
+            <column name="email" />
         </property>
     </class>
 </hibernate-mapping>

@@ -63,6 +63,11 @@ public class HomeController {
 		return "login";
 	}
 
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String register() {
+		return "register";
+	}
+
 	@RequestMapping(value = "/loginProcessor", method = RequestMethod.POST)
 	public String login(@ModelAttribute("loginDetails") LoginDetails loginDetails, Model model) {
 		System.out.println(loginDetails);
@@ -73,6 +78,19 @@ public class HomeController {
 		loginService.registerUserService(loginDetails);
 		model.addAttribute("serverTime", formattedDate);
 		return "success";
+	}
+
+	@RequestMapping(value = "/registerProcessor", method = RequestMethod.POST)
+	public String registerProcessor(@ModelAttribute("loginDetails") LoginDetails loginDetails, Model model) {
+		System.out.println(loginDetails);
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
+
+		String formattedDate = dateFormat.format(date);
+		loginService.registerUserService(loginDetails);
+		model.addAttribute("serverTime", formattedDate);
+		model.addAttribute("successMessage", "Account has been created successfully,Please Login");
+		return "login";
 	}
 
 }
