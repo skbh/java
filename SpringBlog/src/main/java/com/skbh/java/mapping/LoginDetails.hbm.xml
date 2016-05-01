@@ -15,8 +15,19 @@
         <property name="password" type="java.lang.String">
             <column name="password" />
         </property>
+        
          <property name="email" type="java.lang.String">
             <column name="email" />
         </property>
+        
+         <property name="sex" type="java.lang.String">
+            <column name="sex" />
+        </property>
+        
+           <property name="country" type="java.lang.String">
+            <column name="country" />
+        </property>
+        
+        
     </class>
 </hibernate-mapping>

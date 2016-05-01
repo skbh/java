@@ -6,6 +6,16 @@ public class LoginDetails {
 	private String userName;
 	private String email;
 	private String password;
+	private String sex;
+	private String country;
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
 	public Integer getId() {
 		return id;
@@ -39,10 +49,18 @@ public class LoginDetails {
 		this.password = password;
 	}
 
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
 	@Override
 	public String toString() {
 		return "LoginDetails [id=" + id + ", userName=" + userName + ", email=" + email + ", password=" + password
-				+ "]";
+				+ ", sex=" + sex + "]";
 	}
 
 }
